@@ -1,14 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-</head>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="static/css/index.css">
+    </head>
 
-<body>
-    <div class="container">
-        <h1>test</h1>
-    </div>
-</body>
+    <body class="deep-purple lighten-4">
+        <div class="container">
+            <div class="row">
+                <div class="col l12">
+                    <h1>NRF Chip Transfer Format</h1>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th data-field="id">Element</th>
+                                <th data-field="name">Value</th>
+                                <th data-field="price">Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Request</td>
+                                <td>newIdentity</td>
+                                <td>The sensor sends this package to Duality requesting a new sensor ID</td>
+                            </tr>
+                            <tr>
+                                <td>Request</td>
+                                <td>sensorData</td>
+                                <td>
+                                    The sensor sends this package to Duality informing it that the
+                                    rest of the package will be sensor data
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ID/sensor_id</td>
+                                <td>sensor_id</td>
+                                <td>
+                                    Duality uses the sensor_id's to separate data from different
+                                    sensors and to put them in appropriate databases.
+                                    The only time the sensor_id is not an integer is when it
+                                    does not yet have an identity, in which case it will be
+                                    "new_sensor"
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ID/type</td>
+                                <td>sensor_type</td>
+                                <td>A string containing the type of sensor, eg: "temperature", "distance".</td>
+                            </tr>
+                            <tr>
+                                <td>Payload</td>
+                                <td>payload</td>
+                                <td>
+                                    A datatype containing the information from the sensors.
+                                    The format will change depending on the type of sensor
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h3>Examples:</h3>
+                    <blockquote>
+                        <p>{</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;"Request": "sensor_data",</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;"ID": {</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sensor_id": "new_sensor",</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "distance"</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        <p}</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
